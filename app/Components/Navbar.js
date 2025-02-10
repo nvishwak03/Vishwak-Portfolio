@@ -1,10 +1,8 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import Image from "next/image";
 
-export default function Navbar() {
-  const [darkMode, setDarkMode] = useState(false);
-
+export default function Navbar({ darkMode, setDarkMode }) {
   // Check for stored theme preference
   useEffect(() => {
     const storedTheme = localStorage.getItem("theme");
@@ -17,7 +15,7 @@ export default function Navbar() {
       document.documentElement.classList.remove("dark");
       setDarkMode(false);
     }
-  }, []);
+  }, [setDarkMode]);
 
   // Toggle dark mode function
   const toggleDarkMode = () => {
@@ -42,7 +40,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 h-15 bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
+    <nav className="fixed top-0 left-0 w-full z-50 h-15 dark:from-gray-800 dark:to-gray-900">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo on the left */}
@@ -54,13 +52,23 @@ export default function Navbar() {
                 scrollToSection("home");
               }}
             >
-              <Image
+                {darkMode?
+                <Image
                 src="/logo-modified.png"
                 alt="My Portfolio Logo"
                 width={120}
                 height={40}
                 className="h-10 w-auto spin-logo hover:scale-110 transition-transform duration-300"
-              />
+              />:
+              <Image
+              src="/logo1-modified.png"
+              alt="My Portfolio Logo"
+              width={120}
+              height={40}
+              className="h-10 w-auto spin-logo hover:scale-110 transition-transform duration-300"
+            />
+              }
+              
             </a>
           </div>
 
@@ -103,7 +111,7 @@ export default function Navbar() {
             onClick={toggleDarkMode}
             className="p-2 rounded-md bg-gray-500 dark:bg-gray-700 text-black dark:text-white ml-4 transition-colors duration-300"
           >
-            {darkMode ? "☀️": "🌙"}
+            {darkMode ? "☀️" : "🌙"}
           </button>
 
           {/* Mobile menu button */}

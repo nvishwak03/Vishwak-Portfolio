@@ -1,18 +1,21 @@
 "use client";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import ParticlesComponent from './Components/Particle';
-
+import Navbar from "./Components/Navbar";
 export default function Home() {
   // Refs for each section
   const homeRef = useRef<HTMLDivElement>(null);
   const aboutRef = useRef<HTMLDivElement>(null);
   const projectsRef = useRef<HTMLDivElement>(null);
   const contactRef = useRef<HTMLDivElement>(null);
+  const [darkMode, setDarkMode] = useState(false);
 
   return (
     <div className="text-gray-900 dark:text-gray-100">
+
+      <Navbar darkMode={darkMode} setDarkMode={setDarkMode}/>
       <div id="particles">
-        <ParticlesComponent id="particles" />
+        <ParticlesComponent id="particles" darkMode={darkMode}/>
       </div>
       {/* Home Section */}
       <section

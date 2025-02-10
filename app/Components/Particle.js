@@ -2,64 +2,66 @@ import { useState, useEffect, useMemo } from "react"; // Add useState and useEff
 import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 
-const ParticlesComponent = (props) => {
-    const [init, setInit] = useState(false);
-  
-    useEffect(() => {
-      console.log("Initializing particles engine...");
-      initParticlesEngine(async (engine) => {
-        await loadSlim(engine);
-      }).then(() => {
-        console.log("Particles engine initialized!");
-        setInit(true);
-      });
-    }, []);
-  
-    const particlesLoaded = (container) => {
-      console.log("Particles container loaded:", container);
-    };
-  
-    const options = useMemo(
-      () => ({
-        background: {
-          color: {
-            value: "#ffffff",
-          },
+// Define the prop types for ParticlesComponent
+const ParticlesComponent = ({ id, darkMode }) => {
+  const [init, setInit] = useState(false);
+
+  useEffect(() => {
+    console.log("Dark mode:", darkMode);
+    console.log("Initializing particles engine...");
+    initParticlesEngine(async (engine) => {
+      await loadSlim(engine);
+    }).then(() => {
+      console.log("Particles engine initialized!");
+      setInit(true);
+    });
+  }, []);
+
+  const particlesLoaded = (container) => {
+    console.log("Particles container loaded:", container);
+  };
+
+  const options = useMemo(
+    () => ({
+      background: {
+        color: {
+          value: darkMode ? "#000000" : "	#fdf5e2", // Black for dark mode, white for light mode
         },
+      },
         fpsLimit: 120,
         interactivity: {
           events: {
-            onClick: {
-              enable: true,
-              mode: "repulse",
-            },
-            onHover: {
-              enable: true,
-              mode: 'grab',
-            },
+             onClick: {
+            enable: true,
+            mode: "repulse",
           },
-          modes: {
-            push: {
-              distance: 200,
-              duration: 15,
-            },
-            grab: {
-              distance: 150,
-            },
+          onHover: {
+            enable: true,
+            mode: 'grab',
           },
         },
-        particles: {
-          color: {
-            value: "#56bdff",
+        modes: {
+          push: {
+            distance: 200,
+            duration: 15,
           },
-          links: {
-            color: "#56bdff",
+          grab: {
             distance: 150,
-            enable: true,
-            opacity: 1,
-            width: 1,
           },
-          move: {
+        },
+      },
+      particles: {
+        color: {
+          value: darkMode ? "#ffffff" : "#a2a2a2", // White for dark mode, blue for light mode
+        },
+        links: {
+          color: "#56bdff",
+          distance: 150,
+          enable: true,
+          opacity: 1,
+          width: 1,
+        },
+        move: {
             direction: "none",
             enable: true,
             outModes: {
@@ -77,24 +79,24 @@ const ParticlesComponent = (props) => {
           },
           opacity: {
             value: 0.5,
-          },
-          shape: {
-            type: "circle",
-          },
-          size: {
-            value: { min: 3, max: 5 },
-          },
         },
-        detectRetina: true,
-      }),
-      [],
-    );
-  
-    if (!init) {
-      return null; // Return null if particles engine is not initialized
-    }
-  
-    return <Particles id={props.id} init={particlesLoaded} options={options} />;
-  };
-  
-  export default ParticlesComponent;
+        shape: {
+          type: "circle",
+        },
+        size: {
+            value: { min: 3, max: 5 },
+        },
+      },
+      detectRetina: true,
+    }),
+    [darkMode], // Recreate options when darkMode changes
+  );
+
+  if (!init) {
+    return null;
+  }
+
+  return <Particles id={id} init={particlesLoaded} options={options} />;
+};
+
+export default ParticlesComponent;
