@@ -103,7 +103,7 @@ export default function Navbar() {
             onClick={toggleDarkMode}
             className="p-2 rounded-md bg-gray-300 dark:bg-gray-700 text-black dark:text-white ml-4 transition-colors duration-300"
           >
-            {darkMode ? "🌙 Dark" : "☀️ Light"}
+            {darkMode ? "☀️": "🌙"}
           </button>
 
           {/* Mobile menu button */}

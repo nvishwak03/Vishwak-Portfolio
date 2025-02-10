@@ -17,7 +17,7 @@ export default function Home() {
         <div className="text-center">
           <h1 className="text-4xl font-bold">Welcome to My Portfolio</h1>
           <p className="mt-4 text-gray-700 dark:text-gray-300">
-            I'm a developer passionate about building amazing web applications.
+            I&apos;m a developer passionate about building amazing web applications.
           </p>
         </div>
       </section>
@@ -27,7 +27,7 @@ export default function Home() {
         <div className="text-center">
           <h1 className="text-4xl font-bold">About Me</h1>
           <p className="mt-4 text-gray-700 dark:text-gray-300">
-            I'm passionate about learning web development and building cool projects!
+            I&apos;m passionate about learning web development and building cool projects!
           </p>
         </div>
       </section>
@@ -36,7 +36,7 @@ export default function Home() {
       <section id="projects" ref={projectsRef} className="h-screen flex items-center justify-center bg-gray-100 dark:bg-gray-800">
         <div className="text-center">
           <h1 className="text-4xl font-bold">My Projects</h1>
-          <p className="mt-4 text-gray-700 dark:text-gray-300">Here are some of the projects I've worked on:</p>
+          <p className="mt-4 text-gray-700 dark:text-gray-300">Here are some of the projects I&apos;ve worked on:</p>
         </div>
       </section>
 
