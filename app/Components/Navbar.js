@@ -42,7 +42,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 h-20 bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
+    <nav className="fixed top-0 left-0 w-full z-50 h-15 bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo on the left */}
@@ -72,7 +72,7 @@ export default function Navbar() {
                 e.preventDefault();
                 scrollToSection("about");
               }}
-              className="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-gray-400 transition duration-300"
+              className="text-xl text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-gray-400 transition duration-300"
             >
               About
             </a>
@@ -82,7 +82,7 @@ export default function Navbar() {
                 e.preventDefault();
                 scrollToSection("projects");
               }}
-              className="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-gray-400 transition duration-300"
+              className="text-xl text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-gray-400 transition duration-300"
             >
               Projects
             </a>
@@ -92,7 +92,7 @@ export default function Navbar() {
                 e.preventDefault();
                 scrollToSection("contact");
               }}
-              className="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-gray-400 transition duration-300"
+              className=" text-xl text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-gray-400 transition duration-300"
             >
               Contact
             </a>
@@ -101,7 +101,7 @@ export default function Navbar() {
           {/* Dark Mode Toggle Button */}
           <button
             onClick={toggleDarkMode}
-            className="p-2 rounded-md bg-gray-300 dark:bg-gray-700 text-black dark:text-white ml-4 transition-colors duration-300"
+            className="p-2 rounded-md bg-gray-500 dark:bg-gray-700 text-black dark:text-white ml-4 transition-colors duration-300"
           >
             {darkMode ? "☀️": "🌙"}
           </button>
