@@ -1,16 +1,48 @@
-'use client'; // Mark this component as a Client Component
-import Image from 'next/image';
+"use client";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 
 export default function Navbar() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  // Check for stored theme preference
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+    if (storedTheme === "dark" || (!storedTheme && prefersDark)) {
+      document.documentElement.classList.add("dark");
+      setDarkMode(true);
+    } else {
+      document.documentElement.classList.remove("dark");
+      setDarkMode(false);
+    }
+  }, []);
+
+  // Toggle dark mode function
+  const toggleDarkMode = () => {
+    const newMode = !darkMode;
+    setDarkMode(newMode);
+
+    if (newMode) {
+      document.documentElement.classList.add("dark");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  };
+
+  // Scroll to section
   const scrollToSection = (id) => {
     const section = document.getElementById(id);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth' });
+      section.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   return (
-    <nav className="bg-white shadow-md fixed w-full z-10">
+    <nav className="fixed top-0 left-0 w-full z-50 h-20 bg-gradient-to-r from-cyan-500 to-blue-500 dark:from-gray-800 dark:to-gray-900 transition-colors duration-300">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
           {/* Logo on the left */}
@@ -19,28 +51,28 @@ export default function Navbar() {
               href="#home"
               onClick={(e) => {
                 e.preventDefault();
-                scrollToSection('home');
+                scrollToSection("home");
               }}
             >
               <Image
-                src="/logo-modified.png" // Path to your logo
+                src="/logo-modified.png"
                 alt="My Portfolio Logo"
-                width={120} // Adjust based on your logo's aspect ratio
-                height={40} // Adjust based on your logo's aspect ratio
-                className="h-10 w-auto spin-logo hover:scale-110 transition-transform duration-300" // Add zoom effect
+                width={120}
+                height={40}
+                className="h-10 w-auto spin-logo hover:scale-110 transition-transform duration-300"
               />
             </a>
           </div>
 
-          {/* Navigation links on the right */}
+          {/* Navigation links */}
           <div className="hidden md:flex space-x-8">
             <a
               href="#about"
               onClick={(e) => {
                 e.preventDefault();
-                scrollToSection('about');
+                scrollToSection("about");
               }}
-              className="text-gray-700 hover:text-blue-600 transition duration-300"
+              className="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-gray-400 transition duration-300"
             >
               About
             </a>
@@ -48,9 +80,9 @@ export default function Navbar() {
               href="#projects"
               onClick={(e) => {
                 e.preventDefault();
-                scrollToSection('projects');
+                scrollToSection("projects");
               }}
-              className="text-gray-700 hover:text-blue-600 transition duration-300"
+              className="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-gray-400 transition duration-300"
             >
               Projects
             </a>
@@ -58,17 +90,25 @@ export default function Navbar() {
               href="#contact"
               onClick={(e) => {
                 e.preventDefault();
-                scrollToSection('contact');
+                scrollToSection("contact");
               }}
-              className="text-gray-700 hover:text-blue-600 transition duration-300"
+              className="text-gray-900 dark:text-gray-100 hover:text-blue-600 dark:hover:text-gray-400 transition duration-300"
             >
               Contact
             </a>
           </div>
 
-          {/* Mobile menu button (optional) */}
+          {/* Dark Mode Toggle Button */}
+          <button
+            onClick={toggleDarkMode}
+            className="p-2 rounded-md bg-gray-300 dark:bg-gray-700 text-black dark:text-white ml-4 transition-colors duration-300"
+          >
+            {darkMode ? "🌙 Dark" : "☀️ Light"}
+          </button>
+
+          {/* Mobile menu button */}
           <div className="md:hidden flex items-center">
-            <button className="text-gray-700 hover:text-blue-600 focus:outline-none">
+            <button className="text-gray-900 dark:text-gray-100 hover:text-blue-600 focus:outline-none">
               <svg
                 className="h-6 w-6"
                 fill="none"
