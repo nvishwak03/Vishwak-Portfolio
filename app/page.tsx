@@ -1,5 +1,6 @@
 "use client";
 import { useRef } from "react";
+import ParticlesComponent from './Components/Particle';
 
 export default function Home() {
   // Refs for each section
@@ -9,20 +10,15 @@ export default function Home() {
   const contactRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div
-      style={{
-        backgroundImage: "url('/background.jpg')",
-        backgroundRepeat: "repeat",
-        backgroundSize: "cover", // Adjust as needed (e.g., 'contain', 'cover', or '50px 50px')
-        backgroundAttachment: "fixed", // Keeps background fixed while scrolling
-      }}
-      className="bg-white dark:bg-black text-gray-900 dark:text-gray-100"
-    >
+    <div className="text-gray-900 dark:text-gray-100">
+      <div id="particles">
+        <ParticlesComponent id="particles" />
+      </div>
       {/* Home Section */}
       <section
         id="home"
         ref={homeRef}
-        className="h-screen flex items-center justify-center bg-opacity-50"
+        className="h-screen flex items-center justify-center"
       >
         <div className="text-center">
           <h1 className="text-4xl font-bold">Welcome to My Portfolio</h1>
@@ -37,7 +33,7 @@ export default function Home() {
       <section
         id="about"
         ref={aboutRef}
-        className="h-screen flex items-center justify-center bg-opacity-50"
+        className="h-screen flex items-center justify-center"
       >
         <div className="text-center">
           <h1 className="text-4xl font-bold">About Me</h1>
@@ -52,7 +48,7 @@ export default function Home() {
       <section
         id="projects"
         ref={projectsRef}
-        className="h-screen flex items-center justify-center bg-opacity-50"
+        className="h-screen flex items-center justify-center"
       >
         <div className="text-center">
           <h1 className="text-4xl font-bold">My Projects</h1>
@@ -66,7 +62,7 @@ export default function Home() {
       <section
         id="contact"
         ref={contactRef}
-        className="h-screen flex items-center justify-center bg-opacity-50"
+        className="h-screen flex items-center justify-center"
       >
         <div className="text-center">
           <h1 className="text-4xl font-bold">Contact Me</h1>
