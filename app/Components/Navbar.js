@@ -1,35 +1,69 @@
+'use client'; // Mark this component as a Client Component
 import Image from 'next/image';
-import Link from 'next/link';
 
 export default function Navbar() {
+  const scrollToSection = (id) => {
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <nav className="bg-white shadow-md fixed w-full z-10">
       <div className="container mx-auto px-4">
         <div className="flex justify-between items-center h-16">
-          {/* Logo on the left with spinning animation */}
+          {/* Logo on the left */}
           <div className="flex-shrink-0">
-            <Link href="/">
+            <a
+              href="#home"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('home');
+              }}
+            >
               <Image
                 src="/logo-modified.png" // Path to your logo
                 alt="My Portfolio Logo"
                 width={120} // Adjust based on your logo's aspect ratio
                 height={40} // Adjust based on your logo's aspect ratio
-                className="h-10 w-auto spin-logo" // Apply the spin-logo class
+                className="h-10 w-auto spin-logo hover:scale-110 transition-transform duration-300" // Add zoom effect
               />
-            </Link>
+            </a>
           </div>
 
           {/* Navigation links on the right */}
           <div className="hidden md:flex space-x-8">
-            <Link href="/about" className="text-gray-700 hover:text-blue-600 transition duration-300">
+            <a
+              href="#about"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('about');
+              }}
+              className="text-gray-700 hover:text-blue-600 transition duration-300"
+            >
               About
-            </Link>
-            <Link href="/projects" className="text-gray-700 hover:text-blue-600 transition duration-300">
+            </a>
+            <a
+              href="#projects"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('projects');
+              }}
+              className="text-gray-700 hover:text-blue-600 transition duration-300"
+            >
               Projects
-            </Link>
-            <Link href="/contact" className="text-gray-700 hover:text-blue-600 transition duration-300">
+            </a>
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('contact');
+              }}
+              className="text-gray-700 hover:text-blue-600 transition duration-300"
+            >
               Contact
-            </Link>
+            </a>
           </div>
 
           {/* Mobile menu button (optional) */}
