@@ -39,8 +39,8 @@ body {
 }
 
 .spin-logo {
-  animation: spin 2s infinite;
-  height: 60px;
+  /* animation: spin 2s infinite; */
+  height: 45px;
 }
 
 #particles {
